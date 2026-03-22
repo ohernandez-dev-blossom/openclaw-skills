@@ -19,11 +19,16 @@ Next agent startup → reads shared-brain.md → current ground truth
 
 **Install:**
 ```bash
-npx clawhub@latest install hive-mind
-# or manually:
+# Clone and install
 git clone https://github.com/ohernandez-dev-blossom/openclaw-skills
 cd openclaw-skills/hive-mind
 ./scripts/hm-install.sh
+
+# Custom workspace path (default: ~/clawd)
+HIVE_MIND_WORKSPACE=~/my-workspace ./scripts/hm-install.sh
+
+# Via ClawhHub CLI (when registry is live)
+npx clawhub@latest install hive-mind
 ```
 
 **Usage:**
