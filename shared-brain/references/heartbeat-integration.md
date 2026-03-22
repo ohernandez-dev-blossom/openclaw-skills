@@ -3,7 +3,7 @@
 Add this block to `HEARTBEAT.md` under the curation section (or `sb-install.sh` does it automatically):
 
 ```markdown
-## Hive Mind Curation (every heartbeat)
+## Shared Brain Curation (every heartbeat)
 ```bash
 ~/clawd/skills/shared-brain/scripts/sb-curate.sh
 ```

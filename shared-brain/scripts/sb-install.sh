@@ -12,14 +12,14 @@ AGENTS_DIR="$CLAWD/agents"
 HEARTBEAT="$CLAWD/HEARTBEAT.md"
 SKILL_DEST="$CLAWD/skills/shared-brain/scripts"
 
-echo "=== Hive Mind Install ==="
+echo "=== Shared Brain Install ==="
 echo "    Workspace: $CLAWD"
 
 # 1. Create brain and queue files
 mkdir -p "$(dirname "$BRAIN")"
 if [ ! -f "$BRAIN" ]; then
   cat > "$BRAIN" << 'EOF'
-# Shared Brain — Hive Mind
+# Shared Brain
 > Canonical ground truth for all agents. Curated by heartbeat every ≤10 min.
 > Written by: sb-write.sh | Curated by: sb-curate.sh | Do not edit manually.
 > Sections: [INFRA] [PROJECTS] [DECISIONS] [CAMPAIGNS] [SECURITY]
@@ -70,7 +70,7 @@ echo "✓ Agents: $PATCHED patched, $SKIPPED already done"
 if [ -f "$HEARTBEAT" ] && ! grep -q "sb-curate.sh" "$HEARTBEAT"; then
   cat >> "$HEARTBEAT" << HEREDOC
 
-## Hive Mind Curation (every heartbeat)
+## Shared Brain Curation (every heartbeat)
 \`\`\`bash
 $SKILL_DEST/sb-curate.sh
 \`\`\`

@@ -26,7 +26,7 @@ MERGED=0
 if [ ! -f "$BRAIN" ]; then
   mkdir -p "$(dirname "$BRAIN")"
   cat > "$BRAIN" << 'EOF'
-# Shared Brain — Hive Mind
+# Shared Brain
 > Canonical ground truth for all agents. Curated by heartbeat. Do not edit manually.
 
 ## [INFRA]

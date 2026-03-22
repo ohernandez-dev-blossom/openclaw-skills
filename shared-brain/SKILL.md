@@ -10,7 +10,7 @@ description: >
   agents", "collective memory", "shared brain".
 ---
 
-# Hive Mind
+# Shared Brain
 
 Shared persistent memory layer for multi-agent OpenClaw workspaces. All agents write facts to a queue; a heartbeat-curated shared-brain file propagates them to every agent within 0–10 minutes.
 

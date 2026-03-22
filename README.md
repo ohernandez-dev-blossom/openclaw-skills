@@ -8,7 +8,7 @@ Community AgentSkills for [OpenClaw](https://openclaw.ai) — multi-agent workfl
 
 Shared persistent memory layer across multiple AI agents. All agents write facts to a queue; a heartbeat-curated `shared-brain.md` propagates them to every agent within 0–10 minutes.
 
-**Problem it solves:** In multi-agent workspaces, each agent starts with its own context. When something changes (infra migration, new decision, project restructure), you have to manually update 10+ `AGENTS.md` files. Hive Mind makes that automatic.
+**Problem it solves:** In multi-agent workspaces, each agent starts with its own context. When something changes (infra migration, new decision, project restructure), you have to manually update 10+ `AGENTS.md` files. Shared Brain makes that automatic.
 
 **Architecture:**
 ```
