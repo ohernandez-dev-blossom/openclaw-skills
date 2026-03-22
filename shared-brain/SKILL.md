@@ -8,6 +8,33 @@ description: >
   agents to share the same ground truth without manual file propagation. Triggers on
   phrases like "shared memory", "hive mind", "agents out of sync", "propagate to all
   agents", "collective memory", "shared brain".
+requirements:
+  binaries:
+    - bash
+    - python3
+    - sed
+    - grep
+  env:
+    - name: SB_WORKSPACE
+      description: "Path to your OpenClaw workspace (default: ~/clawd)"
+      required: false
+    - name: SB_AGENT
+      description: "Agent name written into each fact entry (default: script basename)"
+      required: false
+    - name: SB_BRAIN
+      description: "Override path to shared-brain.md (default: $SB_WORKSPACE/memory/shared-brain.md)"
+      required: false
+    - name: SB_QUEUE
+      description: "Override path to shared-brain-queue.md (default: $SB_WORKSPACE/memory/shared-brain-queue.md)"
+      required: false
+    - name: SB_ARCHIVE_DIR
+      description: "Override path to archive dir (default: $SB_WORKSPACE/memory)"
+      required: false
+install_notes: >
+  sb-install.sh will patch all agents/*/AGENTS.md and HEARTBEAT.md in your workspace,
+  and copy scripts into $SB_WORKSPACE/skills/shared-brain/scripts/.
+  Run with --dry-run first or back up those files before installing.
+  All changes are local — no network access, no secrets required.
 ---
 
 # Shared Brain
