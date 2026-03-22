@@ -8,34 +8,25 @@ description: >
   agents to share the same ground truth without manual file propagation. Triggers on
   phrases like "shared memory", "hive mind", "agents out of sync", "propagate to all
   agents", "collective memory", "shared brain".
-requirements:
-  binaries:
-    - bash
-    - python3
-    - sed
-    - grep
-  env:
-    - name: SB_WORKSPACE
-      description: "Path to your OpenClaw workspace (default: ~/clawd)"
-      required: false
-    - name: SB_AGENT
-      description: "Agent name written into each fact entry (default: script basename)"
-      required: false
-    - name: SB_BRAIN
-      description: "Override path to shared-brain.md (default: $SB_WORKSPACE/memory/shared-brain.md)"
-      required: false
-    - name: SB_QUEUE
-      description: "Override path to shared-brain-queue.md (default: $SB_WORKSPACE/memory/shared-brain-queue.md)"
-      required: false
-    - name: SB_ARCHIVE_DIR
-      description: "Override path to archive dir (default: $SB_WORKSPACE/memory)"
-      required: false
-install_notes: >
-  sb-install.sh will patch all agents/*/AGENTS.md and HEARTBEAT.md in your workspace,
-  and copy scripts into $SB_WORKSPACE/skills/shared-brain/scripts/.
-  Run with --dry-run first or back up those files before installing.
-  All changes are local — no network access, no secrets required.
 ---
+
+# Shared Brain
+
+## Requirements
+
+**Binaries:** `bash`, `python3`, `sed`, `grep` (standard on Linux/macOS)
+
+**Optional env vars** (all default to `~/clawd`-based paths):
+
+| Var | Default | Description |
+|-----|---------|-------------|
+| `SB_WORKSPACE` | `~/clawd` | Path to your OpenClaw workspace |
+| `SB_AGENT` | script basename | Agent name written into each fact |
+| `SB_BRAIN` | `$SB_WORKSPACE/memory/shared-brain.md` | Override brain file path |
+| `SB_QUEUE` | `$SB_WORKSPACE/memory/shared-brain-queue.md` | Override queue file path |
+| `SB_ARCHIVE_DIR` | `$SB_WORKSPACE/memory` | Override archive directory |
+
+**Install note:** `sb-install.sh` patches `agents/*/AGENTS.md` and `HEARTBEAT.md` and copies scripts into `$SB_WORKSPACE/skills/shared-brain/scripts/`. Use `--dry-run` first to preview all changes. No network access, no secrets required.
 
 # Shared Brain
 
