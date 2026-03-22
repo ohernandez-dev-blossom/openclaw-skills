@@ -5,7 +5,7 @@ Add this block to `HEARTBEAT.md` under the curation section (or `hm-install.sh` 
 ```markdown
 ## Hive Mind Curation (every heartbeat)
 ```bash
-~/clawd/skills/hive-mind/scripts/hm-curate.sh
+~/clawd/skills/shared-brain/scripts/hm-curate.sh
 ```
 - Merges shared-brain-queue.md → shared-brain.md (last-write-wins per key)
 - Reports conflicts → TARS resolves manually

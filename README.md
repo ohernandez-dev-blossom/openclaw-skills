@@ -4,7 +4,7 @@ Community AgentSkills for [OpenClaw](https://openclaw.ai) — multi-agent workfl
 
 ## Skills
 
-### 🧠 hive-mind
+### 🧠 shared-brain
 
 Shared persistent memory layer across multiple AI agents. All agents write facts to a queue; a heartbeat-curated `shared-brain.md` propagates them to every agent within 0–10 minutes.
 
@@ -21,14 +21,14 @@ Next agent startup → reads shared-brain.md → current ground truth
 ```bash
 # Clone and install
 git clone https://github.com/ohernandez-dev-blossom/openclaw-skills
-cd openclaw-skills/hive-mind
+cd openclaw-skills/shared-brain
 ./scripts/hm-install.sh
 
 # Custom workspace path (default: ~/clawd)
 HIVE_MIND_WORKSPACE=~/my-workspace ./scripts/hm-install.sh
 
 # Via ClawhHub CLI (when registry is live)
-npx clawhub@latest install hive-mind
+npx clawhub@latest install shared-brain
 ```
 
 **Usage:**

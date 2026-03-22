@@ -10,7 +10,7 @@ BRAIN="$CLAWD/memory/shared-brain.md"
 QUEUE="$CLAWD/memory/shared-brain-queue.md"
 AGENTS_DIR="$CLAWD/agents"
 HEARTBEAT="$CLAWD/HEARTBEAT.md"
-SKILL_DEST="$CLAWD/skills/hive-mind/scripts"
+SKILL_DEST="$CLAWD/skills/shared-brain/scripts"
 
 echo "=== Hive Mind Install ==="
 echo "    Workspace: $CLAWD"

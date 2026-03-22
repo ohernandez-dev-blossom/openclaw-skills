@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# hm-write.sh — Append a fact to the hive-mind queue
+# hm-write.sh — Append a fact to the shared-brain queue
 # Usage: hm-write.sh SECTION "key = value"
 # Sections: INFRA PROJECTS DECISIONS CAMPAIGNS SECURITY
 # Example: hm-write.sh INFRA "deploy:frontends = Vercel (migrated 2026-03-21)"

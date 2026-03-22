@@ -69,7 +69,7 @@ Each agent only needs its relevant sections — declare which in `AGENTS.md`:
 Use the write script — never edit shared-brain.md directly:
 
 ```bash
-~/clawd/skills/hive-mind/scripts/hm-write.sh SECTION "key = value"
+~/clawd/skills/shared-brain/scripts/hm-write.sh SECTION "key = value"
 ```
 
 **When to write:**
@@ -98,7 +98,7 @@ Summary:
 Run once per workspace:
 
 ```bash
-~/clawd/skills/hive-mind/scripts/hm-install.sh
+~/clawd/skills/shared-brain/scripts/hm-install.sh
 ```
 
 This creates the files, patches all `AGENTS.md` with the startup read line, and adds curation logic to `HEARTBEAT.md`.
