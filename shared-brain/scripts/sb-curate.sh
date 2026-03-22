@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
-# hm-curate.sh — Merge queue into shared-brain.md (run by heartbeat)
-# Usage: hm-curate.sh [--dry-run]
+# sb-curate.sh — Merge queue into shared-brain.md (run by heartbeat)
+# Usage: sb-curate.sh [--dry-run]
 
 set -euo pipefail
 
-_CLAWD="${HIVE_MIND_WORKSPACE:-$HOME/clawd}"
-BRAIN="${HIVE_MIND_BRAIN:-$_CLAWD/memory/shared-brain.md}"
-QUEUE="${HIVE_MIND_QUEUE:-$_CLAWD/memory/shared-brain-queue.md}"
-ARCHIVE_DIR="${HIVE_MIND_ARCHIVE_DIR:-$_CLAWD/memory}"
+_CLAWD="${SB_WORKSPACE:-$HOME/clawd}"
+BRAIN="${SB_BRAIN:-$_CLAWD/memory/shared-brain.md}"
+QUEUE="${SB_QUEUE:-$_CLAWD/memory/shared-brain-queue.md}"
+ARCHIVE_DIR="${SB_ARCHIVE_DIR:-$_CLAWD/memory}"
 MAX_BYTES=8192
 DRY_RUN=0
 

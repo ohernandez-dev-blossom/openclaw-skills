@@ -1,23 +1,23 @@
 #!/usr/bin/env bash
-# hm-write.sh — Append a fact to the shared-brain queue
-# Usage: hm-write.sh SECTION "key = value"
+# sb-write.sh — Append a fact to the shared-brain queue
+# Usage: sb-write.sh SECTION "key = value"
 # Sections: INFRA PROJECTS DECISIONS CAMPAIGNS SECURITY
-# Example: hm-write.sh INFRA "deploy:frontends = Vercel (migrated 2026-03-21)"
+# Example: sb-write.sh INFRA "deploy:frontends = Vercel (migrated 2026-03-21)"
 
 set -euo pipefail
 
-_CLAWD="${HIVE_MIND_WORKSPACE:-$HOME/clawd}"
-QUEUE="${HIVE_MIND_QUEUE:-$_CLAWD/memory/shared-brain-queue.md}"
+_CLAWD="${SB_WORKSPACE:-$HOME/clawd}"
+QUEUE="${SB_QUEUE:-$_CLAWD/memory/shared-brain-queue.md}"
 VALID_SECTIONS="INFRA PROJECTS DECISIONS CAMPAIGNS SECURITY"
 
 if [ $# -lt 2 ]; then
-  echo "Usage: hm-write.sh SECTION \"key = value\"" >&2
+  echo "Usage: sb-write.sh SECTION \"key = value\"" >&2
   exit 1
 fi
 
 SECTION="${1^^}"
 FACT="$2"
-AGENT="${HIVE_MIND_AGENT:-$(basename "$0")}"
+AGENT="${SB_AGENT:-$(basename "$0")}"
 TIMESTAMP=$(date -u '+%Y-%m-%d %H:%M UTC')
 
 # Validate section

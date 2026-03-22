@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# hm-install.sh — One-time setup for a workspace
+# sb-install.sh — One-time setup for a workspace
 # Patches all agents/*/AGENTS.md with shared-brain read at startup
 # Adds curation step to HEARTBEAT.md
 
 set -euo pipefail
 
-CLAWD="${HIVE_MIND_WORKSPACE:-$HOME/clawd}"
+CLAWD="${SB_WORKSPACE:-$HOME/clawd}"
 BRAIN="$CLAWD/memory/shared-brain.md"
 QUEUE="$CLAWD/memory/shared-brain-queue.md"
 AGENTS_DIR="$CLAWD/agents"
@@ -21,7 +21,7 @@ if [ ! -f "$BRAIN" ]; then
   cat > "$BRAIN" << 'EOF'
 # Shared Brain — Hive Mind
 > Canonical ground truth for all agents. Curated by heartbeat every ≤10 min.
-> Written by: hm-write.sh | Curated by: hm-curate.sh | Do not edit manually.
+> Written by: sb-write.sh | Curated by: sb-curate.sh | Do not edit manually.
 > Sections: [INFRA] [PROJECTS] [DECISIONS] [CAMPAIGNS] [SECURITY]
 
 ## [INFRA]
@@ -67,12 +67,12 @@ done
 echo "✓ Agents: $PATCHED patched, $SKIPPED already done"
 
 # 3. Add curation step to HEARTBEAT.md — use actual script path
-if [ -f "$HEARTBEAT" ] && ! grep -q "hm-curate.sh" "$HEARTBEAT"; then
+if [ -f "$HEARTBEAT" ] && ! grep -q "sb-curate.sh" "$HEARTBEAT"; then
   cat >> "$HEARTBEAT" << HEREDOC
 
 ## Hive Mind Curation (every heartbeat)
 \`\`\`bash
-$SKILL_DEST/hm-curate.sh
+$SKILL_DEST/sb-curate.sh
 \`\`\`
 - Merges shared-brain-queue.md → shared-brain.md
 - Reports conflicts to TARS for resolution
@@ -91,5 +91,5 @@ echo "✓ Scripts installed to $SKILL_DEST"
 
 echo ""
 echo "=== Done. All agents will read shared-brain.md on next startup. ==="
-echo "    Write facts:  $SKILL_DEST/hm-write.sh SECTION \"key = value\""
-echo "    Curate now:   $SKILL_DEST/hm-curate.sh"
+echo "    Write facts:  $SKILL_DEST/sb-write.sh SECTION \"key = value\""
+echo "    Curate now:   $SKILL_DEST/sb-curate.sh"

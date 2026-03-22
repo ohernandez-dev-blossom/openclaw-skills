@@ -22,10 +22,10 @@ Next agent startup → reads shared-brain.md → current ground truth
 # Clone and install
 git clone https://github.com/ohernandez-dev-blossom/openclaw-skills
 cd openclaw-skills/shared-brain
-./scripts/hm-install.sh
+./scripts/sb-install.sh
 
 # Custom workspace path (default: ~/clawd)
-HIVE_MIND_WORKSPACE=~/my-workspace ./scripts/hm-install.sh
+SB_WORKSPACE=~/my-workspace ./scripts/sb-install.sh
 
 # Via ClawhHub CLI (when registry is live)
 npx clawhub@latest install shared-brain
@@ -34,13 +34,13 @@ npx clawhub@latest install shared-brain
 **Usage:**
 ```bash
 # Agent writes a permanent fact
-./scripts/hm-write.sh INFRA "deploy:frontends = Vercel (migrated 2026-03-21)"
+./scripts/sb-write.sh INFRA "deploy:frontends = Vercel (migrated 2026-03-21)"
 
 # Heartbeat curates queue into shared brain
-./scripts/hm-curate.sh
+./scripts/sb-curate.sh
 
 # Dry run to preview
-./scripts/hm-curate.sh --dry-run
+./scripts/sb-curate.sh --dry-run
 ```
 
 **Fact format:**
