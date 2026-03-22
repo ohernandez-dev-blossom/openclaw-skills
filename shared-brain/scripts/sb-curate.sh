@@ -4,6 +4,13 @@
 
 set -euo pipefail
 
+# Portable sed -i (macOS requires empty string arg, GNU sed does not)
+if sed --version 2>&1 | grep -q GNU 2>/dev/null; then
+  _SED_I() { sed -i "$@"; }
+else
+  _SED_I() { sed -i "" "$@"; }
+fi
+
 _CLAWD="${SB_WORKSPACE:-$HOME/clawd}"
 BRAIN="${SB_BRAIN:-$_CLAWD/memory/shared-brain.md}"
 QUEUE="${SB_QUEUE:-$_CLAWD/memory/shared-brain-queue.md}"
@@ -69,10 +76,10 @@ while IFS= read -r line; do
       ENTRY="[$KEY] = $NEW_VAL  <!-- $TS by $AGENT -->"
       if grep -q "^\[$KEY\] =" "$BRAIN" 2>/dev/null; then
         # Replace existing key line
-        sed -i "s|^\[$KEY\] =.*|$ENTRY|" "$BRAIN"
+        _SED_I "s|^\[$KEY\] =.*|$ENTRY|" "$BRAIN"
       else
         # Append under the correct section header
-        sed -i "/^## \[$SECTION\]/a $ENTRY" "$BRAIN"
+        _SED_I "/^## \[$SECTION\]/a $ENTRY" "$BRAIN"
       fi
     fi
   fi

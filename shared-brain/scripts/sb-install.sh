@@ -8,6 +8,13 @@
 
 set -euo pipefail
 
+# Portable sed -i (macOS requires empty string arg, GNU sed does not)
+if sed --version 2>&1 | grep -q GNU 2>/dev/null; then
+  _SED_I() { sed -i "$@"; }
+else
+  _SED_I() { sed -i "" "$@"; }
+fi
+
 DRY_RUN=0
 [ "${1:-}" = "--dry-run" ] && DRY_RUN=1
 
@@ -73,7 +80,7 @@ for agents_md in "$AGENTS_DIR"/*/AGENTS.md; do
     echo "[dry-run] Would patch: $agents_md"
   else
     if grep -qE "^## (Init|Iniciali)" "$agents_md"; then
-      sed -i "/^## \(Init\|Iniciali\)/a $READ_LINE" "$agents_md"
+      _SED_I "/^## \(Init\|Iniciali\)/a $READ_LINE" "$agents_md"
     else
       sed -i "0,/^##/{/^##/a $READ_LINE
 }" "$agents_md"
