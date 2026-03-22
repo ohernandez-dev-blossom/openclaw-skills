@@ -6,7 +6,8 @@
 
 set -euo pipefail
 
-QUEUE="${HIVE_MIND_QUEUE:-$HOME/clawd/memory/shared-brain-queue.md}"
+_CLAWD="${HIVE_MIND_WORKSPACE:-$HOME/clawd}"
+QUEUE="${HIVE_MIND_QUEUE:-$_CLAWD/memory/shared-brain-queue.md}"
 VALID_SECTIONS="INFRA PROJECTS DECISIONS CAMPAIGNS SECURITY"
 
 if [ $# -lt 2 ]; then

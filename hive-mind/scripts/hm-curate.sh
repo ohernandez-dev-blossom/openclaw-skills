@@ -4,9 +4,10 @@
 
 set -euo pipefail
 
-BRAIN="${HIVE_MIND_BRAIN:-$HOME/clawd/memory/shared-brain.md}"
-QUEUE="${HIVE_MIND_QUEUE:-$HOME/clawd/memory/shared-brain-queue.md}"
-ARCHIVE_DIR="${HIVE_MIND_ARCHIVE_DIR:-$HOME/clawd/memory}"
+_CLAWD="${HIVE_MIND_WORKSPACE:-$HOME/clawd}"
+BRAIN="${HIVE_MIND_BRAIN:-$_CLAWD/memory/shared-brain.md}"
+QUEUE="${HIVE_MIND_QUEUE:-$_CLAWD/memory/shared-brain-queue.md}"
+ARCHIVE_DIR="${HIVE_MIND_ARCHIVE_DIR:-$_CLAWD/memory}"
 MAX_BYTES=8192
 DRY_RUN=0
 

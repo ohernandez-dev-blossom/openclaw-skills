@@ -10,8 +10,10 @@ BRAIN="$CLAWD/memory/shared-brain.md"
 QUEUE="$CLAWD/memory/shared-brain-queue.md"
 AGENTS_DIR="$CLAWD/agents"
 HEARTBEAT="$CLAWD/HEARTBEAT.md"
+SKILL_DEST="$CLAWD/skills/hive-mind/scripts"
 
 echo "=== Hive Mind Install ==="
+echo "    Workspace: $CLAWD"
 
 # 1. Create brain and queue files
 mkdir -p "$(dirname "$BRAIN")"
@@ -40,8 +42,8 @@ fi
 touch "$QUEUE"
 echo "✓ Queue ready: $QUEUE"
 
-# 2. Patch each agent's AGENTS.md
-READ_LINE='- **SHARED BRAIN:** `cat ~/clawd/memory/shared-brain.md` (read relevant sections at startup)'
+# 2. Patch each agent's AGENTS.md — use actual workspace path, not hardcoded ~/clawd
+READ_LINE="- **SHARED BRAIN:** \`cat $BRAIN\` (read relevant sections at startup)"
 PATCHED=0
 SKIPPED=0
 
@@ -52,11 +54,9 @@ for agents_md in "$AGENTS_DIR"/*/AGENTS.md; do
     SKIPPED=$((SKIPPED+1))
     continue
   fi
-  # Insert after first line starting with "## Init" or "## Iniciali" or after first heading
   if grep -qE "^## (Init|Iniciali)" "$agents_md"; then
     sed -i "/^## \(Init\|Iniciali\)/a $READ_LINE" "$agents_md"
   else
-    # Append to end of first ## section
     sed -i "0,/^##/{/^##/a $READ_LINE
 }" "$agents_md"
   fi
@@ -66,25 +66,24 @@ done
 
 echo "✓ Agents: $PATCHED patched, $SKIPPED already done"
 
-# 3. Add curation step to HEARTBEAT.md if not already there
+# 3. Add curation step to HEARTBEAT.md — use actual script path
 if [ -f "$HEARTBEAT" ] && ! grep -q "hm-curate.sh" "$HEARTBEAT"; then
-  cat >> "$HEARTBEAT" << 'EOF'
+  cat >> "$HEARTBEAT" << HEREDOC
 
 ## Hive Mind Curation (every heartbeat)
-```bash
-~/clawd/skills/hive-mind/scripts/hm-curate.sh
-```
+\`\`\`bash
+$SKILL_DEST/hm-curate.sh
+\`\`\`
 - Merges shared-brain-queue.md → shared-brain.md
 - Reports conflicts to TARS for resolution
 - Archives if brain > 8KB
-EOF
+HEREDOC
   echo "✓ Patched HEARTBEAT.md"
 else
   echo "  HEARTBEAT.md already patched or not found"
 fi
 
 # 4. Copy scripts to workspace skills directory
-SKILL_DEST="$CLAWD/skills/hive-mind/scripts"
 mkdir -p "$SKILL_DEST"
 cp "$(dirname "$0")"/*.sh "$SKILL_DEST/"
 chmod +x "$SKILL_DEST"/*.sh
@@ -92,5 +91,5 @@ echo "✓ Scripts installed to $SKILL_DEST"
 
 echo ""
 echo "=== Done. All agents will read shared-brain.md on next startup. ==="
-echo "    Write facts:  ~/clawd/skills/hive-mind/scripts/hm-write.sh SECTION \"key = value\""
-echo "    Curate now:   ~/clawd/skills/hive-mind/scripts/hm-curate.sh"
+echo "    Write facts:  $SKILL_DEST/hm-write.sh SECTION \"key = value\""
+echo "    Curate now:   $SKILL_DEST/hm-curate.sh"
