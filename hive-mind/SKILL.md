@@ -1,5 +1,5 @@
 ---
-name: hive-mind
+name: shared-brain
 description: >
   Shared persistent memory layer across multiple AI agents. Use when setting up a
   multi-agent workspace for the first time, when an agent discovers a permanent
